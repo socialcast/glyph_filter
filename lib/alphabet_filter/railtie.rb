@@ -1,44 +1,18 @@
 require 'rails'
 
 require 'alphabet_filter/config'
-require 'kaminari/helpers/action_view_extension'
-require 'kaminari/helpers/paginator'
-require 'kaminari/models/page_scope_methods'
-require 'kaminari/models/configuration_methods'
+require 'alphabet_filter/helpers/action_view_extension'
 
-module Kaminari
+module AlphabetFilter
   class Railtie < ::Rails::Railtie #:nodoc:
-    initializer 'kaminari' do |app|
+    initializer 'alphabet_filter' do |app|
       ActiveSupport.on_load(:active_record) do
-        require 'kaminari/models/active_record_extension'
-        ::ActiveRecord::Base.send :include, Kaminari::ActiveRecordExtension
+        require 'alphabet_filter/models/active_record_extension'
+        ::ActiveRecord::Base.send :include, AlphabetFilter::ActiveRecordExtension
       end
-
-      if defined? ::Mongoid
-        require 'kaminari/models/mongoid_extension'
-        ::Mongoid::Document.send :include, Kaminari::MongoidExtension::Document
-        ::Mongoid::Criteria.send :include, Kaminari::MongoidExtension::Criteria
-      end
-
-      ActiveSupport.on_load(:mongo_mapper) do
-        require 'kaminari/models/mongo_mapper_extension'
-        ::MongoMapper::Document.send :include, Kaminari::MongoMapperExtension::Document
-        ::Plucky::Query.send :include, Kaminari::PluckyCriteriaMethods
-        ::Plucky::Query.send :include, Kaminari::PageScopeMethods
-      end
-
-      if defined? ::DataMapper
-        require 'kaminari/models/data_mapper_extension'
-        ::DataMapper::Collection.send :include, Kaminari::DataMapperExtension::Collection
-        ::DataMapper::Model.append_extensions Kaminari::DataMapperExtension::Model
-#         ::DataMapper::Model.send :extend, Kaminari::DataMapperExtension::Model
-      end
-      require 'kaminari/models/array_extension'
-
-      require File.join(File.dirname(__FILE__), 'models/array_extension')
 
       ActiveSupport.on_load(:action_view) do
-        ::ActionView::Base.send :include, Kaminari::ActionViewExtension
+        ::ActionView::Base.send :include, AlphabetFilter::ActionViewExtension
       end
     end
   end
