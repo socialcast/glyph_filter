@@ -1,0 +1,6 @@
+= filter_section.render do
+  .pagination_wrapper
+    .pagination
+      = all_tag
+      - each_glyph do |glyph|
+        = glyph_tag glyph

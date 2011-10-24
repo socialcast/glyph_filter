@@ -1,0 +1,2 @@
+%span{:class => "glyph#{' current' if glyph.current?}"}
+  = link_to_unless glyph.current?, glyph, url

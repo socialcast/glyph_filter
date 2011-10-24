@@ -14,7 +14,7 @@ module AlphabetFilter
     include ActiveSupport::Configurable
     config_accessor :letters
     config_accessor :param_name
-    config_accessor :punctuation
+    config_accessor :left_over
     config_accessor :all
     
   end
@@ -22,7 +22,7 @@ module AlphabetFilter
   configure do |config|
     config.letters = ("A".."Z").to_a
     config.param_name = :letter
-    config.punctuation = "?"
+    config.left_over = "?"
     config.all = "ALL"
   end
 end
