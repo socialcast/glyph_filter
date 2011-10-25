@@ -1,0 +1,9 @@
+<%= filter_section.render do -%>
+  <div class="pagination_wrapper">
+    <div class="pagination">
+      <%= all_tag %>
+      <% each_glyph do |glyph| -%>
+        <%= glyph_tag glyph %>
+    </div>
+  </div>
+<% end -%>
