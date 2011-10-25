@@ -20,7 +20,7 @@ module AlphabetFilter
       end
       
       def each_glyph
-        @options[:letters].each do |letter|
+        (@options[:letters] + [@options[:left_over]]).each do |letter|
           yield SectionProxy.new @options, letter
         end
       end
@@ -38,7 +38,7 @@ module AlphabetFilter
           @options, @section = options, section
         end
         def current?
-          @section == @options[:current_section]
+          @section == @options[:current_section].to_s
         end
         def all?
           @section == @options[:all]

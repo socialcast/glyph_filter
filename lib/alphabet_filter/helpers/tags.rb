@@ -3,14 +3,18 @@ module AlphabetFilter
     class Tag
       def initialize(template, options={})
         @template, @options = template, options.dup
-        @params = @options[:params] ? template.params.merge(@options.delete :params).except(@options[:excluded_params]) : template.params.except(@options[:excluded_params])
+        @params = @options[:params] ? template.params.merge(@options.delete(:params)).except(@options[:excluded_params]) : template.params.except(@options[:excluded_params])
       end
       def to_s(locals = {})
         @template.render :partial => "alphabet_filter/#{self.class.name.demodulize.underscore}", :locals => @options.merge(locals)
       end
       def filter_section_url_for(filter_section)
-        these_params = @params.except(options[:param_name]) if filter_section == @options[:all]
-        @template.url_for these_params.merge(@param_name => (filter_section))
+        these_params = if filter_section == @options[:all]
+          @params.except(@options[:param_name].to_s)
+        else
+          @params.merge(@options[:param_name] => filter_section)
+        end
+        @template.url_for these_params
       end
     end
     module Link

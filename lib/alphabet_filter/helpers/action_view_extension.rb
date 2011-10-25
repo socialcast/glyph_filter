@@ -1,3 +1,5 @@
+require File.join(File.dirname(__FILE__), 'filter_section')
+
 module AlphabetFilter
   module ActionViewExtension
     extend ::ActiveSupport::Concern
