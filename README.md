@@ -1,4 +1,4 @@
-# alphabet_filter_
+# glyph_filter_
 
 Easily filter content by a list of characters
 
@@ -15,7 +15,7 @@ end
 
 app/views/users/index.html.haml
 ```haml
-= alphabet_filter
+= glyph_filter
 = render :partial => @users
 ```
 
@@ -29,14 +29,14 @@ app/views/users/index.html.haml
 
 ```ruby
 # Bundler Gemfile
-gem 'alphabet_filter_'
+gem 'glyph_filter_'
 ```
 
 ## Configuration
 
 ```ruby
-# config/initializers/alphabet_filter.rb
-AlphabetFilter.configure do |config|
+# config/initializers/glyph_filter.rb
+GlyphFilter.configure do |config|
 # (optional) customize letters to filter by
 # default is ("A".."Z").to_a
   config.letters = ("b".."y").to_a

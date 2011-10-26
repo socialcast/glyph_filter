@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "alphabet_filter/version"
+require "glyph_filter/version"
 
 Gem::Specification.new do |s|
-  s.name        = "alphabet_filter"
-  s.version     = AlphabetFilter::VERSION
+  s.name        = "glyph_filter"
+  s.version     = GlyphFilter::VERSION
   s.authors     = ["Sean Cashin"]
   s.email       = ["scashin133@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{Alphabetical filter for AR}
   s.description = %q{Alphabetical filter for AR}
 
-  s.rubyforge_project = "alphabet_filter"
+  s.rubyforge_project = "glyph_filter"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
