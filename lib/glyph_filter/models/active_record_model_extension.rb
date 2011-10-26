@@ -1,4 +1,4 @@
-module AlphabetFilter
+module GlyphFilter
   module ActiveRecordModelExtension
     extend ActiveSupport::Concern
 
@@ -6,8 +6,8 @@ module AlphabetFilter
       self.scope :letter_filter, Proc.new {|column, filter_letter|
         if filter_letter.blank?
           where({})
-        elsif filter_letter == AlphabetFilter.config.left_over
-          where("#{table_name}.#{column} regexp '^[^#{AlphabetFilter.config.letters.join("|")}|#{AlphabetFilter.config.letters.map(&:downcase).join("|")}]'")
+        elsif filter_letter == GlyphFilter.config.left_over
+          where("#{table_name}.#{column} regexp '^[^#{GlyphFilter.config.letters.join("|")}|#{GlyphFilter.config.letters.map(&:downcase).join("|")}]'")
         else
           where("#{table_name}.#{column} like ?", filter_letter + "%")
         end

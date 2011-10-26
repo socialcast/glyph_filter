@@ -1,3 +1,3 @@
-module AlphabetFilter
+module GlyphFilter
   VERSION = "0.0.1"
 end

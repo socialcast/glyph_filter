@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), 'tags')
 require 'action_view/context'
 
-module AlphabetFilter
+module GlyphFilter
   module Helpers
     class FilterSection < Tag
       include ActionView::Context

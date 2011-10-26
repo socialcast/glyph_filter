@@ -1,4 +1,4 @@
-module AlphabetFilter
+module GlyphFilter
   module Helpers
     class Tag
       def initialize(template, options={})
@@ -6,7 +6,7 @@ module AlphabetFilter
         @params = @options[:params] ? template.params.merge(@options.delete(:params)).except(@options[:excluded_params]) : template.params.except(@options[:excluded_params])
       end
       def to_s(locals = {})
-        @template.render :partial => "alphabet_filter/#{self.class.name.demodulize.underscore}", :locals => @options.merge(locals)
+        @template.render :partial => "glyph_filter/#{self.class.name.demodulize.underscore}", :locals => @options.merge(locals)
       end
       def filter_section_url_for(filter_section)
         these_params = if filter_section == @options[:all]

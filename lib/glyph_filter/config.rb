@@ -1,9 +1,9 @@
 require 'active_support/configurable'
 
-module AlphabetFilter
+module GlyphFilter
 
   def self.configure(&block)
-    yield @config ||= AlphabetFilter::Configuration.new
+    yield @config ||= GlyphFilter::Configuration.new
   end
 
   def self.config
