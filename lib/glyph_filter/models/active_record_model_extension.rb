@@ -3,13 +3,13 @@ module GlyphFilter
     extend ActiveSupport::Concern
 
     included do
-      self.scope :letter_filter, Proc.new {|column, filter_letter|
-        if filter_letter.blank?
+      self.scope :glyph_filter, Proc.new {|column, glyph|
+        if glyph.blank?
           where({})
-        elsif filter_letter == GlyphFilter.config.left_over
-          where("#{table_name}.#{column} regexp '^[^#{GlyphFilter.config.letters.join("|")}|#{GlyphFilter.config.letters.map(&:downcase).join("|")}]'")
+        elsif glyph == GlyphFilter.config.left_over
+          where("#{table_name}.#{column} regexp '^[^#{(GlyphFilter.config.glyphs + GlyphFilter.config.glyphs.map(&:downcase)).uniq.join("|")}]'")
         else
-          where("#{table_name}.#{column} like ?", filter_letter + "%")
+          where("#{table_name}.#{column} LIKE ?", glyph + "%")
         end
       }
       

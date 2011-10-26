@@ -20,8 +20,8 @@ module GlyphFilter
       end
       
       def each_glyph
-        (@options[:letters] + [@options[:left_over]]).each do |letter|
-          yield SectionProxy.new @options, letter
+        (@options[:glyphs] + [@options[:left_over]]).each do |glyph|
+          yield SectionProxy.new @options, glyph
         end
       end
 
