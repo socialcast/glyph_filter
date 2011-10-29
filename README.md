@@ -1,10 +1,11 @@
-# glyph_filter_
+# glyph_filter
 
 Easily filter content by a list of characters
 
 ## Usage
 
 app/controllers/users_controller.rb
+
 ```ruby
 class UserController < ActionController::Base
   def index
@@ -14,6 +15,7 @@ end
 ```
 
 app/views/users/index.html.haml
+
 ```haml
 = glyph_filter
 = render :partial => @users
