@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = GlyphFilter::VERSION
   s.authors     = ["Sean Cashin"]
   s.email       = ["scashin133@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/socialcast/glyph_filter"
   s.summary     = %q{Alphabetical filter for AR}
   s.description = %q{Alphabetical filter for AR}
 
