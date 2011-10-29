@@ -20,4 +20,8 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_dependency "railties", ">= 3.0.0"
+  s.add_development_dependency "capybara", ">= 0.4.0"
+  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "rails", "~> 3.0.0"
+  
 end

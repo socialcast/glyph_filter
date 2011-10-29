@@ -16,7 +16,6 @@ module GlyphFilter
     config_accessor :param_name
     config_accessor :left_over
     config_accessor :all
-    
   end
 
   configure do |config|
