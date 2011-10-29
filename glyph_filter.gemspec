@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Sean Cashin"]
   s.email       = ["scashin133@gmail.com"]
   s.homepage    = "https://github.com/socialcast/glyph_filter"
-  s.summary     = %q{Alphabetical filter for AR}
-  s.description = %q{Alphabetical filter for AR}
+  s.summary     = %q{Filter glyphs in rails}
+  s.description = %q{Add ability to filter ActiveRecord models by glyph and display a filter section in your views}
 
   s.rubyforge_project = "glyph_filter"
 
