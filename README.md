@@ -31,7 +31,7 @@ app/views/users/index.html.haml
 
 ```ruby
 # Bundler Gemfile
-gem 'glyph_filter_'
+gem 'glyph_filter'
 ```
 
 ## Configuration
