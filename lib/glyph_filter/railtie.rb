@@ -1,4 +1,5 @@
 require 'rails'
+require 'wherex'
 
 require 'glyph_filter/config'
 require 'glyph_filter/helpers/action_view_extension'
