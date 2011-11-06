@@ -1,2 +1,2 @@
 %span{:class => "all#{' current' if current_section.all?}"}
-  = link_to_unless current_section.all?, all, url
+  = link_to_unless current_section.all?, raw(t 'views.filter_section.all'), url

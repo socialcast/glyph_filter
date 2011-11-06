@@ -9,7 +9,7 @@ module GlyphFilter
         @template.render :partial => "glyph_filter/#{self.class.name.demodulize.underscore}", :locals => @options.merge(locals)
       end
       def filter_section_url_for(filter_section)
-        these_params = if filter_section == @options[:all]
+        these_params = if self.is_a?(All)
           @params.except(@options[:param_name].to_s)
         else
           @params.merge(@options[:param_name] => filter_section)
@@ -22,7 +22,12 @@ module GlyphFilter
         raise "Must implement section_value to return what this sections value is"
       end
       def url
-        filter_section_url_for section_value
+        value = if self.is_a?(All)
+          nil
+        else
+          section_value
+        end
+        filter_section_url_for value
       end
       def to_s(locals = {}) #:nodoc:
         super locals.merge(:url => url)
@@ -30,10 +35,6 @@ module GlyphFilter
     end
     class All < Tag
       include Link
-      
-      def section_value
-        @options[:all]
-      end
     end
     class Glyph < Tag
       include Link

@@ -41,7 +41,7 @@ module GlyphFilter
           @section == @options[:current_section].to_s
         end
         def all?
-          @section == @options[:all]
+          @section.nil?
         end
         def left_over?
           @section == @options[:left_over]

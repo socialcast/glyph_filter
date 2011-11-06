@@ -50,11 +50,15 @@ GlyphFilter.configure do |config|
 # (optional) customize the string used to distinguish the 'left_over' content
 # default is "?"
   config.left_over = "!"
-
-# (optional) customize the string used to show all content
-# default is "ALL"
-  config.all = "MOST"
 end
+```
+
+```yml
+# Change the all filter name using i18n
+en:
+  views:
+    filter_section:
+      all: ALL
 ```
 
 ## Contributing
