@@ -1,4 +1,4 @@
-rvm use ree@glyph_filter --create
+rvm use ree-2011.12@glyph_filter --create
 if ! command -v bundle ; then
   gem install bundler
   bundle install
