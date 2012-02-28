@@ -22,8 +22,12 @@ Gem::Specification.new do |s|
   s.add_dependency "railties", ">= 3.0.0"
   s.add_dependency "wherex", "~> 1.0.1"
   s.add_development_dependency "capybara", ">= 0.4.0"
+  s.add_development_dependency 'rspec', ['>= 0']
+  s.add_development_dependency 'rspec-rails', ['>= 0']
+  s.add_development_dependency 'database_cleaner', ['>= 0']
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rails", "~> 3.0.0"
   s.add_development_dependency "geminabox"
+  s.add_development_dependency 'rr', ['>= 0']
   
 end
