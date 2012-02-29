@@ -1,6 +1,5 @@
 module GlyphFilter::Helpers
   class Tag
-    attr_reader :params
     def initialize(template, options={})
       @template, @options = template, options.dup
       @params = @options[:params] ? template.params.merge(@options.delete(:params)).except(*@options[:excluded_params]) : template.params.except(*@options[:excluded_params])

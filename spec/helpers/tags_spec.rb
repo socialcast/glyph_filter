@@ -9,8 +9,8 @@ describe 'GlyphFilter::Helpers' do
             params { {:controller => "users", :action => 'index'} }
           end
         end
-        subject { GlyphFilter::Helpers::Tag.new(@template) }
-        its(:params) { should == {:controller => "users", :action => 'index'} }
+        subject { GlyphFilter::Helpers::Tag.new(@template).instance_variable_get('@params') }
+        it { should == {:controller => "users", :action => 'index'} }
       end
       context 'excluded_params of [page]' do
         before do
@@ -18,8 +18,8 @@ describe 'GlyphFilter::Helpers' do
             params { {:controller => "users", :action => 'index', :page => '1'} }
           end
         end
-        subject { GlyphFilter::Helpers::Tag.new(@template, :excluded_params => [:page]) }
-        its(:params) { should == {:controller => "users", :action => 'index'} }
+        subject { GlyphFilter::Helpers::Tag.new(@template, :excluded_params => [:page]).instance_variable_get('@params') }
+        it { should == {:controller => "users", :action => 'index'} }
       end
       context 'excluded_params of page' do
         before do
@@ -27,8 +27,8 @@ describe 'GlyphFilter::Helpers' do
             params { {:controller => "users", :action => 'index', :page => '1'} }
           end
         end
-        subject { GlyphFilter::Helpers::Tag.new(@template, :excluded_params => :page) }
-        its(:params) { should == {:controller => "users", :action => 'index'} }
+        subject { GlyphFilter::Helpers::Tag.new(@template, :excluded_params => :page).instance_variable_get('@params') }
+        it { should == {:controller => "users", :action => 'index'} }
       end
       context 'params of page' do
         before do
@@ -36,8 +36,8 @@ describe 'GlyphFilter::Helpers' do
             params { {:controller => "users", :action => 'index'} }
           end
         end
-        subject { GlyphFilter::Helpers::Tag.new(@template, :params => {:page => '1'}) }
-        its(:params) { should == {:controller => "users", :action => 'index', :page => '1'} }
+        subject { GlyphFilter::Helpers::Tag.new(@template, :params => {:page => '1'}).instance_variable_get('@params') }
+        it { should == {:controller => "users", :action => 'index', :page => '1'} }
       end
       context 'params of page and excluded_params of page' do
         before do
@@ -45,8 +45,8 @@ describe 'GlyphFilter::Helpers' do
             params { {:controller => "users", :action => 'index'} }
           end
         end
-        subject { GlyphFilter::Helpers::Tag.new(@template, :params => {:page => '1'}, :excluded_params => :page) }
-        its(:params) { should == {:controller => "users", :action => 'index'} }
+        subject { GlyphFilter::Helpers::Tag.new(@template, :params => {:page => '1'}, :excluded_params => :page).instance_variable_get('@params') }
+        it { should == {:controller => "users", :action => 'index'} }
       end
     end
   end
