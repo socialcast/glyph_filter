@@ -1,0 +1,4 @@
+Sean Cashin - Original Author
+
+Complete list of contributors:
+https://github.com/socialcast/glyph_filter/contributors
