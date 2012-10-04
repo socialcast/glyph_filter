@@ -1,11 +1,8 @@
 =begin
 Copyright (c) 2011-2012 VMware, Inc. All Rights Reserved.
 
-COPYING PERMISSION STATEMENT: In addition to the copyright notice, the
-following copying permission statement should be added immediately following
-the VMware copyright notice in the source.
 
-“Permission is hereby granted, free of charge, to any person obtaining a copy
+Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to
 deal in the Software without restriction, including without limitation the
 rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
@@ -37,6 +34,10 @@ app = Class.new(Rails::Application)
 app.config.secret_token = "3b7cd727ee24e8444053437c36cc66c4"
 app.config.session_store :cookie_store, :key => "_myapp_session"
 app.config.active_support.deprecation = :log
+app.config.before_initialize do
+  Haml.init_rails(binding)
+  Haml::Template.options[:format] = :html5
+end
 app.initialize!
 
 # routes

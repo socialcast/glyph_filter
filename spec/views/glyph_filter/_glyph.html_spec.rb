@@ -1,4 +1,6 @@
+=begin
 Copyright (c) 2011-2012 VMware, Inc. All Rights Reserved.
+
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to
@@ -17,3 +19,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 IN THE SOFTWARE.
+=end
+
+require 'spec_helper'
+
+[:haml, :erb].each do |template_engine|
+  describe "glyph_filter/_glyph.html.#{template_engine}" do
+    it "should render #{template_engine.to_s}" do
+      glyph = stub(:current? => true)
+      url = 'https://google.com'
+      lambda { render(:partial => "glyph_filter/glyph.html", :locals => { :glyph => glyph, :url => url }, :handlers => [template_engine]) }.should_not raise_error
+    end
+  end
+end
