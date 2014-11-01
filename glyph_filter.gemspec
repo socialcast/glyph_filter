@@ -27,7 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'database_cleaner', ['>= 0']
   s.add_development_dependency "rails", ">= 4"
   s.add_development_dependency "geminabox"
-  s.add_development_dependency 'rr', ['>= 0']
   s.add_development_dependency "sqlite3"
-
 end
