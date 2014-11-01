@@ -23,75 +23,75 @@ IN THE SOFTWARE.
 
 require 'spec_helper'
 
-describe 'GlyphFilter::Helpers' do
+describe 'GlyphFilter::Helpers', :type => :helper do
   describe 'Tag' do
     describe '#initialize' do
       context 'no options' do
         before do
-          stub(@template = Object.new) do
-            params { {:controller => "users", :action => 'index'} }
-          end
+          @template = double(:params => { :controller => "users", :action => 'index' })
         end
         subject { GlyphFilter::Helpers::Tag.new(@template).instance_variable_get('@params') }
-        it { should == {:controller => "users", :action => 'index'} }
+        it { is_expected.to eq({:controller => "users", :action => 'index'}) }
       end
       context 'excluded_params of [page]' do
         before do
-          stub(@template = Object.new) do
-            params { {:controller => "users", :action => 'index', :page => '1'} }
-          end
+          @template = double(:params => { :controller => "users", :action => 'index', :page => '1' })
         end
         subject { GlyphFilter::Helpers::Tag.new(@template, :excluded_params => [:page]).instance_variable_get('@params') }
-        it { should == {:controller => "users", :action => 'index'} }
+        it { is_expected.to eq({:controller => "users", :action => 'index'}) }
       end
       context 'excluded_params of page' do
         before do
-          stub(@template = Object.new) do
-            params { {:controller => "users", :action => 'index', :page => '1'} }
-          end
+          @template = double(:params => { :controller => "users", :action => 'index', :page => '1' })
         end
         subject { GlyphFilter::Helpers::Tag.new(@template, :excluded_params => :page).instance_variable_get('@params') }
-        it { should == {:controller => "users", :action => 'index'} }
+        it { is_expected.to eq({:controller => "users", :action => 'index'}) }
       end
       context 'params of page' do
         before do
-          stub(@template = Object.new) do
-            params { {:controller => "users", :action => 'index'} }
-          end
+          @template = double(:params => { :controller => "users", :action => 'index' })
         end
         subject { GlyphFilter::Helpers::Tag.new(@template, :params => {:page => '1'}).instance_variable_get('@params') }
-        it { should == {:controller => "users", :action => 'index', :page => '1'} }
+        it { is_expected.to eq({:controller => "users", :action => 'index', :page => '1'}) }
       end
       context 'params of page and excluded_params of page' do
         before do
-          stub(@template = Object.new) do
-            params { {:controller => "users", :action => 'index'} }
-          end
+          @template = double(:params => { :controller => "users", :action => 'index' })
         end
         subject { GlyphFilter::Helpers::Tag.new(@template, :params => {:page => '1'}, :excluded_params => :page).instance_variable_get('@params') }
-        it { should == {:controller => "users", :action => 'index'} }
+        it { is_expected.to eq({:controller => "users", :action => 'index'}) }
       end
     end
   end
   describe 'Glyph' do
     describe '#section_value' do
       before do
-        stub(@template = Object.new) do
-          params { {:controller => "users", :action => 'index'} }
-        end
+        @template = double(:params => { :controller => "users", :action => 'index' })
       end
       subject { GlyphFilter::Helpers::Glyph.new(@template, :glyph => 'A') }
-      its(:section_value) { should == 'A' }
+
+      describe '#section_value' do
+        subject { super().section_value }
+        it { is_expected.to eq('A') }
+      end
     end
     describe '#url' do
       subject { GlyphFilter::Helpers::Glyph.new(helper, :params => {"controller" => 'users', "action" => 'index'}, :glyph => 'A', :param_name => :glyph) }
-      its(:url) { should == "/users?glyph=A"}
+
+      describe '#url' do
+        subject { super().url }
+        it { is_expected.to eq("/users?glyph=A")}
+      end
     end
   end
   describe 'All' do
     describe '#url' do
       subject { GlyphFilter::Helpers::All.new(helper, :params => {"controller" => 'users', "action" => 'index', "glyph" => 'A'}, :param_name => :glyph) }
-      its(:url) { should == "/users"}
+
+      describe '#url' do
+        subject { super().url }
+        it { is_expected.to eq("/users")}
+      end
     end
   end
 end

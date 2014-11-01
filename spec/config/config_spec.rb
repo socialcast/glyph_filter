@@ -27,13 +27,20 @@ describe GlyphFilter::Configuration do
   subject { GlyphFilter.config }
   describe 'glyphs' do
     context 'by default' do
-      its(:glyphs) { should == (("A".."Z").to_a) }
+      describe '#glyphs' do
+        subject { super().glyphs }
+        it { is_expected.to eq(("A".."Z").to_a) }
+      end
     end
     context 'configured via config block' do
       before do
         GlyphFilter.configure {|c| c.glyphs = [1,2,3]}
       end
-      its(:glyphs) { should == [1,2,3] }
+
+      describe '#glyphs' do
+        subject { super().glyphs }
+        it { is_expected.to eq([1,2,3]) }
+      end
       after do
         GlyphFilter.configure {|c| c.glyphs = ("A".."Z").to_a}
       end
@@ -41,13 +48,19 @@ describe GlyphFilter::Configuration do
   end
   describe 'param_name' do
     context 'by default' do
-      its(:param_name) { should == :glyph }
+      describe '#param_name' do
+        subject { super().param_name }
+        it { is_expected.to eq(:glyph) }
+      end
     end
   end
 
   describe 'left_over' do
     context 'by default' do
-      its(:left_over) { should == "?" }
+      describe '#left_over' do
+        subject { super().left_over }
+        it { is_expected.to eq("?") }
+      end
     end
   end
 end

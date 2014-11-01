@@ -23,7 +23,7 @@ IN THE SOFTWARE.
 
 require 'spec_helper'
 
-describe GlyphFilter::ActiveRecordModelExtension do
+describe GlyphFilter::ActiveRecordModelExtension, :type => :model do
   before :all do
     (['@'] + ("A".."Z").to_a).each {|character| User.create! :name => "#{character}user"}
   end
@@ -31,23 +31,59 @@ describe GlyphFilter::ActiveRecordModelExtension do
     describe '#glyph_filter' do
       context 'glyph_filter name, A' do
         subject { User.glyph_filter(:name, 'A')}
-        it { should have(1).users }
-        its('first.name') { should == 'Auser' }
+        it 'has 1 user' do
+          expect(subject.size).to eq(1)
+        end
+
+        describe '#first' do
+          subject { super().first }
+          describe '#name' do
+            subject { super().name }
+            it { is_expected.to eq('Auser') }
+          end
+        end
       end
       context 'glyph_filter name and empty string' do
         subject { User.glyph_filter(:name, '')}
-        it { should have(27).users }
-        its('first.name') { should == '@user' }
+        it 'has 27 users' do
+          expect(subject.size).to eq(27)
+        end
+
+        describe '#first' do
+          subject { super().first }
+          describe '#name' do
+            subject { super().name }
+            it { is_expected.to eq('@user') }
+          end
+        end
       end
       context 'glyph_filter name and nil' do
         subject { User.glyph_filter(:name, nil)}
-        it { should have(27).users }
-        its('first.name') { should == '@user' }
+        it 'has 27 users' do
+          expect(subject.size).to eq(27)
+        end
+
+        describe '#first' do
+          subject { super().first }
+          describe '#name' do
+            subject { super().name }
+            it { is_expected.to eq('@user') }
+          end
+        end
       end
       context 'glyph_filter name and left_over character' do
         subject { User.glyph_filter(:name, '?')}
-        it { should have(1).users }
-        its('first.name') { should == '@user' }
+        it 'has 1 user' do
+          expect(subject.size).to eq(1)
+        end
+
+        describe '#first' do
+          subject { super().first }
+          describe '#name' do
+            subject { super().name }
+            it { is_expected.to eq('@user') }
+          end
+        end
       end
     end
   end
