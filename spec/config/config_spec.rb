@@ -24,11 +24,11 @@ IN THE SOFTWARE.
 require 'spec_helper'
 
 describe GlyphFilter::Configuration do
-  subject { GlyphFilter.config }
+  let(:glyph_filter_config) { GlyphFilter.config }
   describe 'glyphs' do
     context 'by default' do
       describe '#glyphs' do
-        subject { super().glyphs }
+        subject { glyph_filter_config.glyphs }
         it { is_expected.to eq(("A".."Z").to_a) }
       end
     end
@@ -38,7 +38,7 @@ describe GlyphFilter::Configuration do
       end
 
       describe '#glyphs' do
-        subject { super().glyphs }
+        subject { glyph_filter_config.glyphs }
         it { is_expected.to eq([1,2,3]) }
       end
       after do
@@ -49,7 +49,7 @@ describe GlyphFilter::Configuration do
   describe 'param_name' do
     context 'by default' do
       describe '#param_name' do
-        subject { super().param_name }
+        subject { glyph_filter_config.param_name }
         it { is_expected.to eq(:glyph) }
       end
     end
@@ -58,7 +58,7 @@ describe GlyphFilter::Configuration do
   describe 'left_over' do
     context 'by default' do
       describe '#left_over' do
-        subject { super().left_over }
+        subject { glyph_filter_config.left_over }
         it { is_expected.to eq("?") }
       end
     end

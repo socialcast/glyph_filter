@@ -5,8 +5,8 @@ require "glyph_filter/version"
 Gem::Specification.new do |s|
   s.name        = "glyph_filter"
   s.version     = GlyphFilter::VERSION
-  s.authors     = ["Sean Cashin"]
-  s.email       = ["scashin133@gmail.com"]
+  s.authors     = ["Sean Cashin", "developers@socialcast.com"]
+  s.email       = ["developers@socialcast.com"]
   s.homepage    = "https://github.com/socialcast/glyph_filter"
   s.summary     = %q{Filter glyphs in rails}
   s.description = %q{Add ability to filter ActiveRecord models by glyph and display a filter section in your views}

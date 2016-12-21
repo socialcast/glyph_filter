@@ -29,11 +29,14 @@ module GlyphFilter
     included do
       # Future subclasses will pick up the model extension
       class << self
-        def inherited_with_glyph_filter(kls) #:nodoc:
-          inherited_without_glyph_filter kls
-          kls.send(:include, GlyphFilter::ActiveRecordModelExtension) if kls.superclass == ActiveRecord::Base
-        end
-        alias_method_chain :inherited, :glyph_filter
+        prepend(
+          Module.new do
+            def inherited(kls) #:nodoc:
+              super
+              kls.send(:include, GlyphFilter::ActiveRecordModelExtension) if kls.superclass == ActiveRecord::Base
+            end
+          end
+        )
       end
 
       # Existing subclasses pick up the model extension as well

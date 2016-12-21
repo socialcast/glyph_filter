@@ -36,6 +36,9 @@ module GlyphFilter::Helpers
       else
         @params.merge(@options[:param_name] => filter_section)
       end
+      these_params[:only_path] = true
+      these_params.permit! if these_params.respond_to?(:permit!)
+
       @template.url_for these_params
     end
   end
