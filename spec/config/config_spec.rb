@@ -24,30 +24,29 @@ IN THE SOFTWARE.
 require 'spec_helper'
 
 describe GlyphFilter::Configuration do
-  subject { GlyphFilter.config }
+  let(:glyph_filter_config) { GlyphFilter.config }
   describe 'glyphs' do
+    subject { glyph_filter_config.glyphs }
     context 'by default' do
-      its(:glyphs) { should == (("A".."Z").to_a) }
+      it { is_expected.to eq(("A".."Z").to_a) }
     end
     context 'configured via config block' do
       before do
         GlyphFilter.configure {|c| c.glyphs = [1,2,3]}
       end
-      its(:glyphs) { should == [1,2,3] }
+      it { is_expected.to eq([1,2,3]) }
       after do
         GlyphFilter.configure {|c| c.glyphs = ("A".."Z").to_a}
       end
     end
   end
   describe 'param_name' do
-    context 'by default' do
-      its(:param_name) { should == :glyph }
-    end
+    subject { glyph_filter_config.param_name }
+    it { is_expected.to eq(:glyph) }
   end
 
   describe 'left_over' do
-    context 'by default' do
-      its(:left_over) { should == "?" }
-    end
+    subject { glyph_filter_config.left_over }
+    it { is_expected.to eq("?") }
   end
 end

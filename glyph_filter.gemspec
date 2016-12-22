@@ -5,8 +5,8 @@ require "glyph_filter/version"
 Gem::Specification.new do |s|
   s.name        = "glyph_filter"
   s.version     = GlyphFilter::VERSION
-  s.authors     = ["Sean Cashin"]
-  s.email       = ["scashin133@gmail.com"]
+  s.authors     = ["Sean Cashin", "developers@socialcast.com"]
+  s.email       = ["developers@socialcast.com"]
   s.homepage    = "https://github.com/socialcast/glyph_filter"
   s.summary     = %q{Filter glyphs in rails}
   s.description = %q{Add ability to filter ActiveRecord models by glyph and display a filter section in your views}
@@ -19,16 +19,13 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  s.add_dependency "railties", ">= 3.0.0"
-  s.add_dependency "wherex", "~> 1.0.7"
+  s.add_dependency "railties", ">= 4.0.0"
   s.add_development_dependency "capybara", ">= 0.4.0"
   s.add_development_dependency "haml", ['>= 0']
   s.add_development_dependency 'rspec', ['>= 0']
   s.add_development_dependency 'rspec-rails', ['>= 0']
   s.add_development_dependency 'database_cleaner', ['>= 0']
-  s.add_development_dependency "rails", "~> 3.2"
+  s.add_development_dependency "rails", ">= 4"
   s.add_development_dependency "geminabox"
-  s.add_development_dependency 'rr', ['>= 0']
   s.add_development_dependency "sqlite3"
-
 end

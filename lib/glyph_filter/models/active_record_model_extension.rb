@@ -30,7 +30,7 @@ module GlyphFilter
         if glyph.blank?
           where({})
         elsif glyph == GlyphFilter.config.left_over
-          where(column => /^[^#{(GlyphFilter.config.glyphs + GlyphFilter.config.glyphs.map(&:downcase)).uniq.join("|")}]/)
+          where("#{column} REGEXP ?", "^[^#{(GlyphFilter.config.glyphs + GlyphFilter.config.glyphs.map(&:downcase)).uniq.join("|")}]")
         else
           a_table = self.arel_table
           where(a_table[column.to_sym].matches(glyph + "%"))

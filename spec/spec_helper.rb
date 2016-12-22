@@ -27,6 +27,7 @@ require 'rails'
 require 'sqlite3'
 require 'glyph_filter'
 require 'database_cleaner'
+require 'action_view'
 require 'haml'
 
 require 'fake_app'
@@ -37,7 +38,6 @@ require 'rspec/rails'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  config.mock_with :rr
   config.before :all do
     CreateAllTables.up unless ActiveRecord::Base.connection.table_exists? 'users'
   end

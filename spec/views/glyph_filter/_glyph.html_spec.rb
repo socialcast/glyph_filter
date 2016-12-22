@@ -24,11 +24,11 @@ IN THE SOFTWARE.
 require 'spec_helper'
 
 [:haml, :erb].each do |template_engine|
-  describe "glyph_filter/_glyph.html.#{template_engine}" do
+  describe "glyph_filter/_glyph.html.#{template_engine}", :type => :view do
     it "should render #{template_engine.to_s}" do
-      glyph = stub(:current? => true)
+      glyph = double(:current? => true)
       url = 'https://google.com'
-      lambda { render(:partial => "glyph_filter/glyph.html", :locals => { :glyph => glyph, :url => url }, :handlers => [template_engine]) }.should_not raise_error
+      expect { render(:partial => "glyph_filter/glyph.html", :locals => { :glyph => glyph, :url => url }, :handlers => [template_engine]) }.not_to raise_error
     end
   end
 end

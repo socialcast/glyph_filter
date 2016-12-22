@@ -26,8 +26,7 @@ require 'action_controller/railtie'
 require 'action_view/railtie'
 
 # database
-ActiveRecord::Base.configurations = {'test' => {:adapter => 'sqlite3', :database => ':memory:'}}
-ActiveRecord::Base.establish_connection('test')
+ActiveRecord::Base.establish_connection(:adapter => 'sqlite3', :database => ':memory:')
 
 # config
 app = Class.new(Rails::Application)

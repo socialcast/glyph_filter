@@ -23,31 +23,40 @@ IN THE SOFTWARE.
 
 require 'spec_helper'
 
-describe GlyphFilter::ActiveRecordModelExtension do
+describe GlyphFilter::ActiveRecordModelExtension, :type => :model do
   before :all do
     (['@'] + ("A".."Z").to_a).each {|character| User.create! :name => "#{character}user"}
   end
   context "for User" do
-    describe '#glyph_filter' do
+    describe '.glyph_filter' do
+      let(:user_glyph_filter) { User.glyph_filter(*glyph_filter_args) }
       context 'glyph_filter name, A' do
-        subject { User.glyph_filter(:name, 'A')}
-        it { should have(1).users }
-        its('first.name') { should == 'Auser' }
+        let(:glyph_filter_args) { [:name, 'A'] }
+        it do
+          expect(user_glyph_filter.size).to eq(1)
+          expect(user_glyph_filter.first.name).to eq 'Auser'
+        end
       end
       context 'glyph_filter name and empty string' do
-        subject { User.glyph_filter(:name, '')}
-        it { should have(27).users }
-        its('first.name') { should == '@user' }
+        let(:glyph_filter_args) { [:name, ''] }
+        it 'has 27 users' do
+          expect(user_glyph_filter.size).to eq(27)
+          expect(user_glyph_filter.first.name).to eq '@user'
+        end
       end
       context 'glyph_filter name and nil' do
-        subject { User.glyph_filter(:name, nil)}
-        it { should have(27).users }
-        its('first.name') { should == '@user' }
+        let(:glyph_filter_args) { [:name, nil] }
+        it 'has 27 users' do
+          expect(user_glyph_filter.size).to eq(27)
+          expect(user_glyph_filter.first.name).to eq '@user'
+        end
       end
       context 'glyph_filter name and left_over character' do
-        subject { User.glyph_filter(:name, '?')}
-        it { should have(1).users }
-        its('first.name') { should == '@user' }
+        let(:glyph_filter_args) { [:name, '?'] }
+        it 'has 1 user' do
+          expect(user_glyph_filter.size).to eq(1)
+          expect(user_glyph_filter.first.name).to eq '@user'
+        end
       end
     end
   end
