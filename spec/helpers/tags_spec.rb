@@ -68,30 +68,21 @@ describe 'GlyphFilter::Helpers', :type => :helper do
       before do
         @template = double(:params => { :controller => "users", :action => 'index' })
       end
-      subject { GlyphFilter::Helpers::Glyph.new(@template, :glyph => 'A') }
-
-      describe '#section_value' do
-        subject { super().section_value }
-        it { is_expected.to eq('A') }
-      end
+      let(:glyph) { GlyphFilter::Helpers::Glyph.new(@template, :glyph => 'A') }
+      subject { glyph.section_value }
+      it { is_expected.to eq('A') }
     end
     describe '#url' do
-      subject { GlyphFilter::Helpers::Glyph.new(helper, :params => {"controller" => 'users', "action" => 'index'}, :glyph => 'A', :param_name => :glyph) }
-
-      describe '#url' do
-        subject { super().url }
-        it { is_expected.to eq("/users?glyph=A")}
-      end
+      let(:glyph) { GlyphFilter::Helpers::Glyph.new(helper, :params => {"controller" => 'users', "action" => 'index'}, :glyph => 'A', :param_name => :glyph) }
+      subject { glyph.url }
+      it { is_expected.to eq("/users?glyph=A")}
     end
   end
   describe 'All' do
     describe '#url' do
-      subject { GlyphFilter::Helpers::All.new(helper, :params => {"controller" => 'users', "action" => 'index', "glyph" => 'A'}, :param_name => :glyph) }
-
-      describe '#url' do
-        subject { super().url }
-        it { is_expected.to eq("/users")}
-      end
+      let(:glyph) { GlyphFilter::Helpers::All.new(helper, :params => {"controller" => 'users', "action" => 'index', "glyph" => 'A'}, :param_name => :glyph) }
+      subject { glyph.url }
+      it { is_expected.to eq("/users")}
     end
   end
 end
