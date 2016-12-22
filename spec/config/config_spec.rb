@@ -26,41 +26,27 @@ require 'spec_helper'
 describe GlyphFilter::Configuration do
   let(:glyph_filter_config) { GlyphFilter.config }
   describe 'glyphs' do
+    subject { glyph_filter_config.glyphs }
     context 'by default' do
-      describe '#glyphs' do
-        subject { glyph_filter_config.glyphs }
-        it { is_expected.to eq(("A".."Z").to_a) }
-      end
+      it { is_expected.to eq(("A".."Z").to_a) }
     end
     context 'configured via config block' do
       before do
         GlyphFilter.configure {|c| c.glyphs = [1,2,3]}
       end
-
-      describe '#glyphs' do
-        subject { glyph_filter_config.glyphs }
-        it { is_expected.to eq([1,2,3]) }
-      end
+      it { is_expected.to eq([1,2,3]) }
       after do
         GlyphFilter.configure {|c| c.glyphs = ("A".."Z").to_a}
       end
     end
   end
   describe 'param_name' do
-    context 'by default' do
-      describe '#param_name' do
-        subject { glyph_filter_config.param_name }
-        it { is_expected.to eq(:glyph) }
-      end
-    end
+    subject { glyph_filter_config.param_name }
+    it { is_expected.to eq(:glyph) }
   end
 
   describe 'left_over' do
-    context 'by default' do
-      describe '#left_over' do
-        subject { glyph_filter_config.left_over }
-        it { is_expected.to eq("?") }
-      end
-    end
+    subject { glyph_filter_config.left_over }
+    it { is_expected.to eq("?") }
   end
 end
